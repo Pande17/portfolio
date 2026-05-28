@@ -6,7 +6,7 @@ import p2 from "@/assets/wasana.png"
 import p3 from "@/assets/viotrack.png"
 import a1 from "@/assets/sekolah-beta.jpeg";
 import a2 from "@/assets/certificate-internship.png";
-import a3 from "@/assets/Workshop-Nextgen.png";
+import a3 from "@/assets/workshop-nextgen.png";
 import a4 from "@/assets/juara-pnbrc25.png";
 
 const projects = [
