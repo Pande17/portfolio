@@ -45,7 +45,7 @@ export function About() {
           </div>
 
           <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[360px] md:max-w-[380px] lg:max-w-[400px]">
-            <div className="overflow-hidden rounded-3xl border border-hairline bg-card shadow-sm">
+            <div className="overflow-hidden rounded-3xl hover:scale-95 hover:transition-all hover:duration-200 hover:ease-in-out">
               <img
                 src={aboutPortrait}
                 alt="Feri working"
@@ -54,6 +54,19 @@ export function About() {
                 loading="lazy"
                 className="aspect-[4/5] w-full object-cover"
               />
+            </div>
+            <div className="absolute -bottom-4 -left-4 flex items-center gap-2 rounded-full border border-hairline bg-card px-4 py-2 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
+              </span>
+              <span className="text-xs font-medium">Open to work</span>
+            </div>
+            <div className="absolute -right-3 top-6 hidden rounded-2xl border border-hairline bg-card px-4 py-3 shadow-sm md:block">
+              <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
+                Based in
+              </div>
+              <div className="font-display text-sm font-semibold">Bali, ID</div>
             </div>
           </div>
         </div>

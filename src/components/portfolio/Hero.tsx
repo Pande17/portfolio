@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
-import heroPortrait from "@/assets/hero-portrait.png";
+import gif from "@/assets/Hero.gif";
 
 const skills = ["React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "Go", "PHP", "MySQL", "MongoDB", "Wordpress"];
 
@@ -62,16 +62,16 @@ export function Hero() {
 
           <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[360px] md:max-w-[380px] lg:max-w-[400px]">
             <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-brand-soft/60 blur-2xl" />
-            <div className="overflow-hidden rounded-3xl border border-hairline bg-card shadow-sm">
+            <div className="overflow-hidden rounded-3xl hover:scale-95 hover:transition-all hover:duration-200 hover:ease-in-out">
               <img
-                src={heroPortrait}
-                alt="Portrait of Feri DW"
+                src={gif}
+                alt="Web Developer"
                 width={600}
-                height={600}
+                height={800}
                 className="aspect-[4/5] w-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -left-4 flex items-center gap-2 rounded-full border border-hairline bg-card px-4 py-2 shadow-sm">
+            {/* <div className="absolute -bottom-4 -left-4 flex items-center gap-2 rounded-full border border-hairline bg-card px-4 py-2 shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
@@ -83,7 +83,7 @@ export function Hero() {
                 Based in
               </div>
               <div className="font-display text-sm font-semibold">Bali, ID</div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
