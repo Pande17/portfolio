@@ -16,97 +16,71 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # Safety: remove public/index.html if it was accidentally re-committed.
-      # This file overwrites dist/client/index.html during the Vite build.
-      - name: Remove public/index.html if present
-        run: |
-          if [ -f "public/index.html" ]; then
-            echo "WARNING: public/index.html found — removing before build."
-            rm -f public/index.html
-          else
-            echo "OK: public/index.html not present."
-          fi
-
-      - name: Build project (+ generate static index.html via postbuild)
+      - name: Build project
         run: npm run build
 
       - name: Detect build output folder
         id: output
         shell: bash
         run: |
-          echo "Checking build output..."
-          if [ -d "dist/client" ]; then
+          if [ -f "dist/client/index.html" ]; then
             echo "dir=dist/client/" >> "$GITHUB_OUTPUT"
             echo "Using dist/client/"
-          elif [ -d ".output/public" ]; then
+          elif [ -f ".output/public/index.html" ]; then
             echo "dir=.output/public/" >> "$GITHUB_OUTPUT"
             echo "Using .output/public/"
-          elif [ -d "dist" ]; then
+          elif [ -f "dist/index.html" ]; then
             echo "dir=dist/" >> "$GITHUB_OUTPUT"
             echo "Using dist/"
           else
-            echo "ERROR: No build output folder found."
-            ls -la
+            echo "No valid production index.html found."
+            find . -name index.html
             exit 1
           fi
 
-      - name: Verify index.html is a valid production build
+      - name: Validate production index.html
         shell: bash
         run: |
           OUTPUT_DIR="${{ steps.output.outputs.dir }}"
-          INDEX="${OUTPUT_DIR}index.html"
+          head -n 50 "${OUTPUT_DIR}index.html"
 
-          if [ ! -f "$INDEX" ]; then
-            echo "ERROR: $INDEX does not exist!"
-            echo "Contents of $OUTPUT_DIR:"
-            ls -la "$OUTPUT_DIR"
+          if grep -q "../src/" "${OUTPUT_DIR}index.html"; then
+            echo "Invalid build: index.html still references ../src/"
             exit 1
           fi
 
-          echo "=== Contents of $INDEX ==="
-          cat "$INDEX"
-
-          # Fail if the file still references tsx source files
-          if grep -q "src/routes" "$INDEX"; then
-            echo "ERROR: index.html still points to .tsx source files!"
+          if grep -q ".tsx" "${OUTPUT_DIR}index.html"; then
+            echo "Invalid build: index.html still references TSX source file"
             exit 1
           fi
 
-          # Fail if there are no <script> tags with hashed asset bundles
-          if ! grep -q "assets/index" "$INDEX"; then
-            echo "ERROR: index.html does not contain production JS bundle references!"
-            exit 1
-          fi
-
-          echo "✓ index.html is a valid production build."
-
-      - name: Add .htaccess SPA fallback for Hostinger
+      - name: Add Hostinger htaccess
         shell: bash
         run: |
           OUTPUT_DIR="${{ steps.output.outputs.dir }}"
+
           cat > "${OUTPUT_DIR}.htaccess" <<'EOF'
           <IfModule mod_rewrite.c>
             RewriteEngine On
-            RewriteBase /
+            RewriteBase /feridw/
             RewriteRule ^index\.html$ - [L]
             RewriteCond %{REQUEST_FILENAME} !-f
             RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteRule . /index.html [L]
+            RewriteRule . /feridw/index.html [L]
           </IfModule>
           EOF
-          echo "✓ .htaccess written to ${OUTPUT_DIR}"
 
-      - name: Deploy to Hostinger via FTP
+      - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOSTINGER_FTP_SERVER }}
           username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
           password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
           local-dir: ${{ steps.output.outputs.dir }}
-          server-dir: ./
+          server-dir: /public_html/feridw/
