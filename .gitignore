@@ -32,6 +32,6 @@ dist-ssr
 *.sw?
 
 # Lovable AI
-lovable
+.lovable/
 lovable/plan.md
 GEMINI.md
