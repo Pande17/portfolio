@@ -76,11 +76,13 @@ jobs:
           </IfModule>
           EOF
 
-      - name: Deploy to Hostinger
+      - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOSTINGER_FTP_SERVER }}
           username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
           password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-          local-dir: ${{ steps.output.outputs.dir }}
-          server-dir: /public_html/feridw/
+          port: 21
+          protocol: ftp
+          local-dir: ./dist/
+          server-dir: ./
