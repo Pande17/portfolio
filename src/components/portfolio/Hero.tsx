@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
-import gif from "@/assets/Hero.gif";
+import gif from "@/assets/hero.gif";
 import { ScrollReveal } from "./ScrollReveal";
 
 const skills = [
