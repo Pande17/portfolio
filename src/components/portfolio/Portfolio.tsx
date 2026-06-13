@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import p1 from "@/assets/enz.png";
-import p2 from "@/assets/natora.png";
-import p3 from "@/assets/viotrack.png";
+import p2 from "@/assets/viotrack.png";
+import p3 from "@/assets/natora.png";
+import p4 from "@/assets/senyara.png";
 import a1 from "@/assets/sekolah-beta.jpeg";
 import a2 from "@/assets/certificate-internship.png";
 import a3 from "@/assets/workshop-nextgen.png";
@@ -16,18 +17,28 @@ const projects = [
     desc: "Web App for generate Certificate with Grade",
     tags: ["React", "Tailwind CSS", "Go", "MongoDB", "Docker"],
     image: p1,
-  },
-  {
-    title: "Natora",
-    desc: "Natora's company profile website displays the advantages, products and manufacturing process of these products.",
-    tags: ["HTML", "Tailwind CSS", "JavaScript"],
-    image: p2,
+    liveUrl: "https://github.com/Pande17/certificate-generator",
   },
   {
     title: "Viotrack",
     desc: "Web App for Tracking and Monitoring Violation in school. Manage by  ",
     tags: ["PHP", "HTML", "Tailwind CSS", "MySQL"],
+    image: p2,
+    liveUrl: "https://github.com/Pande17/viotrack",
+  },
+  {
+    title: "Natora",
+    desc: "Natora's company profile website displays the advantages, products and manufacturing process of these products.",
+    tags: ["HTML", "Tailwind CSS", "JavaScript"],
     image: p3,
+    liveUrl: "natora.vercel.app",
+  },
+  {
+    title: "Senyara",
+    desc: "Senyara is a modern heritage dining room where slow-cooked traditions meet refined, contemporary plating.",
+    tags: ["HTML", "Tailwind CSS", "JavaScript"],
+    image: p4,
+    liveUrl: "senyara.vercel.app",
   },
   // { title: "Pulse Insights", desc: "Marketing analytics with anomaly detection.", tags: ["TypeScript", "D3"], image: p4 },
   // { title: "Field Studio", desc: "Landing page system for a creative agency.", tags: ["Astro", "MDX"], image: p5 },
@@ -104,10 +115,7 @@ export function Portfolio() {
             >
               {projects.map((p) => (
                 <ScrollReveal key={p.title} variant="stagger-item" className="h-full flex">
-                  <a
-                    href="#"
-                    className="group flex flex-col w-full overflow-hidden rounded-2xl border border-hairline bg-card transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-sm"
-                  >
+                  <div className="group flex flex-col w-full overflow-hidden rounded-2xl border border-hairline bg-card transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-sm">
                     <div className="overflow-hidden bg-surface">
                       <img
                         src={p.image}
@@ -124,7 +132,7 @@ export function Portfolio() {
                         <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand" />
                       </div>
                       <p className="text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-                      <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
+                      <div className="flex flex-wrap gap-1.5 pt-2">
                         {p.tags.map((t) => (
                           <span
                             key={t}
@@ -134,8 +142,20 @@ export function Portfolio() {
                           </span>
                         ))}
                       </div>
+                      <div className="mt-auto pt-4">
+                        <a
+                          href={p.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-brand px-4 py-2.5 text-sm font-medium text-brand-foreground shadow-sm transition-all hover:shadow-md hover:shadow-brand/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        >
+                          <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
+                          <ExternalLink className="h-4 w-4 transition-transform group-hover/btn:rotate-12" />
+                          <span>Live Demo</span>
+                        </a>
+                      </div>
                     </div>
-                  </a>
+                  </div>
                 </ScrollReveal>
               ))}
             </ScrollReveal>
