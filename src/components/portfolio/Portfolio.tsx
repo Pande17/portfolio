@@ -2,8 +2,8 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import p1 from "@/assets/enz.png";
-import p2 from "@/assets/natora.png";
-import p3 from "@/assets/viotrack.png";
+import p2 from "@/assets/viotrack.png";
+import p3 from "@/assets/natora.png";
 import a1 from "@/assets/sekolah-beta.jpeg";
 import a2 from "@/assets/certificate-internship.png";
 import a3 from "@/assets/workshop-nextgen.png";
@@ -18,15 +18,15 @@ const projects = [
     image: p1,
   },
   {
-    title: "Natora",
-    desc: "Natora's company profile website displays the advantages, products and manufacturing process of these products.",
-    tags: ["HTML", "Tailwind CSS", "JavaScript"],
-    image: p2,
-  },
-  {
     title: "Viotrack",
     desc: "Web App for Tracking and Monitoring Violation in school. Manage by  ",
     tags: ["PHP", "HTML", "Tailwind CSS", "MySQL"],
+    image: p2,
+  },
+  {
+    title: "Natora",
+    desc: "Natora's company profile website displays the advantages, products and manufacturing process of these products.",
+    tags: ["HTML", "Tailwind CSS", "JavaScript"],
     image: p3,
   },
   // { title: "Pulse Insights", desc: "Marketing analytics with anomaly detection.", tags: ["TypeScript", "D3"], image: p4 },
