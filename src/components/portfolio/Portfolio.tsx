@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import p1 from "@/assets/enz.png";
 import p2 from "@/assets/viotrack.png";
 import p3 from "@/assets/natora.png";
+import p4 from "@/assets/senyara.png";
 import a1 from "@/assets/sekolah-beta.jpeg";
 import a2 from "@/assets/certificate-internship.png";
 import a3 from "@/assets/workshop-nextgen.png";
@@ -16,21 +17,28 @@ const projects = [
     desc: "Web App for generate Certificate with Grade",
     tags: ["React", "Tailwind CSS", "Go", "MongoDB", "Docker"],
     image: p1,
-    liveUrl: "#",
+    liveUrl: "https://github.com/Pande17/certificate-generator",
   },
   {
     title: "Viotrack",
     desc: "Web App for Tracking and Monitoring Violation in school. Manage by  ",
     tags: ["PHP", "HTML", "Tailwind CSS", "MySQL"],
     image: p2,
-    liveUrl: "#",
+    liveUrl: "https://github.com/Pande17/viotrack",
   },
   {
     title: "Natora",
     desc: "Natora's company profile website displays the advantages, products and manufacturing process of these products.",
     tags: ["HTML", "Tailwind CSS", "JavaScript"],
     image: p3,
-    liveUrl: "#",
+    liveUrl: "natora.vercel.app",
+  },
+  {
+    title: "Senyara",
+    desc: "Senyara is a modern heritage dining room where slow-cooked traditions meet refined, contemporary plating.",
+    tags: ["HTML", "Tailwind CSS", "JavaScript"],
+    image: p4,
+    liveUrl: "senyara.vercel.app",
   },
   // { title: "Pulse Insights", desc: "Marketing analytics with anomaly detection.", tags: ["TypeScript", "D3"], image: p4 },
   // { title: "Field Studio", desc: "Landing page system for a creative agency.", tags: ["Astro", "MDX"], image: p5 },
