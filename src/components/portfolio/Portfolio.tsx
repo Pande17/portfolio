@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import p1 from "@/assets/enz.png";
-import p2 from "@/assets/wasana.png";
+import p2 from "@/assets/natora.png";
 import p3 from "@/assets/viotrack.png";
 import a1 from "@/assets/sekolah-beta.jpeg";
 import a2 from "@/assets/certificate-internship.png";
@@ -18,8 +18,8 @@ const projects = [
     image: p1,
   },
   {
-    title: "Wasana Bali",
-    desc: "Wasana Bali's company profile website displays the advantages, products and manufacturing process of these products.",
+    title: "Natora",
+    desc: "Natora's company profile website displays the advantages, products and manufacturing process of these products.",
     tags: ["HTML", "Tailwind CSS", "JavaScript"],
     image: p2,
   },
