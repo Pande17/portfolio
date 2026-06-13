@@ -28,7 +28,7 @@ const projects = [
   },
   {
     title: "Natora",
-    desc: "Natora's company profile website displays the advantages, products and manufacturing process of these products.",
+    desc: "Natora is company profile website displays the advantages, products and manufacturing process of these products.",
     tags: ["HTML", "Tailwind CSS", "JavaScript"],
     image: p3,
     liveUrl: "natora.vercel.app",
