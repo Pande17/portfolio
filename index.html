@@ -1,32 +1,53 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Feri DW — Web Developer</title>
-    <meta
-      name="description"
-      content="Portfolio of Feri DW, a web developer crafting clean, fast, and thoughtful interfaces with React, TypeScript, and modern web tooling."
-    />
+    <meta name="description" content="Portfolio of Feri DW, a web developer crafting clean, fast, and thoughtful interfaces with React, JavaScript, and modern web tooling." />
     <meta name="author" content="Feri DW" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0A0A0F" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Feri DW — Web Developer" />
-    <meta
-      property="og:description"
-      content="Portfolio of Feri DW — clean, modern web experiences."
-    />
+    <meta property="og:description" content="Portfolio of Feri DW — clean, modern web experiences." />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content="https://feridw.dev/" />
+    <meta property="og:site_name" content="Feri DW Portfolio" />
+    <meta property="og:image" content="https://feridw.dev/og-image.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="id_ID" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Feri DW — Web Developer" />
+    <meta name="twitter:description" content="Portfolio of Feri DW — clean, modern web experiences." />
+    <meta name="twitter:image" content="https://feridw.dev/og-image.png" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Feri DW",
+      "url": "https://feridw.dev",
+      "jobTitle": "Web Developer",
+      "description": "Web developer crafting clean, fast, and thoughtful interfaces.",
+      "sameAs": [
+        "https://github.com/feridw",
+        "https://linkedin.com/in/feridw"
+      ]
+    }
+    </script>
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

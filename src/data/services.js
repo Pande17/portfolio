@@ -1,0 +1,43 @@
+export const services = [
+	{
+		id: 'basic',
+		nameKey: 'services.basic.name',
+		descriptionKey: 'services.basic.desc',
+		priceDisplay: 'Rp 1.5jt',
+		priceNote: 'services.basic.priceNote',
+		featuresKeys: ['services.basic.f1', 'services.basic.f2', 'services.basic.f3', 'services.basic.f4', 'services.basic.f5', 'services.basic.f6', 'services.basic.f7'],
+		popular: false,
+		ctaKey: 'services.cta',
+		waMessage: "Hi Feri! I'm interested in the Basic package (Rp 1.5jt). Can you tell me more about it?",
+	},
+	{
+		id: 'pro',
+		nameKey: 'services.pro.name',
+		descriptionKey: 'services.pro.desc',
+		priceDisplay: 'Rp 2jt',
+		priceNote: 'services.pro.priceNote',
+		featuresKeys: ['services.pro.f1', 'services.pro.f2', 'services.pro.f3', 'services.pro.f4', 'services.pro.f5', 'services.pro.f6', 'services.pro.f7'],
+		popular: true,
+		ctaKey: 'services.cta',
+		waMessage: "Hi Feri! I'm interested in the Bisnis package (Rp 2jt). Can you tell me more about it?",
+	},
+	{
+		id: 'custom',
+		nameKey: 'services.custom.name',
+		descriptionKey: 'services.custom.desc',
+		priceDisplay: null,
+		priceNote: 'services.custom.priceNote',
+		featuresKeys: [
+			'services.custom.f1',
+			'services.custom.f2',
+			'services.custom.f3',
+			'services.custom.f4',
+			'services.custom.f5',
+			// 'services.custom.f6', //payment gateway integration is not available for custom projects
+			'services.custom.f7',
+		],
+		popular: false,
+		ctaKey: 'services.customCta',
+		waMessage: "Hi Feri! I'd like to discuss a custom project. Can we talk about it?",
+	},
+];
