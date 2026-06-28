@@ -9,6 +9,7 @@ import { Testimonials } from './components/Testimonials';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { useScrollReveal } from './hooks/useScrollReveal';
 
 export default function App() {
@@ -70,6 +71,7 @@ export default function App() {
 				<Contact />
 			</main>
 			<Footer />
+			<FloatingWhatsApp />
 			{/* </div> */}
 		</>
 	);

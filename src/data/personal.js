@@ -8,6 +8,7 @@ const personal = {
   whatsapp: "6285159065144",
   waMessageContact: "Hi Feri! I found your portfolio and I'm interested in discussing a project with you.",
   waMessageTalk: "Hi Feri! I'd like to talk about a project I'm planning. Are you available?",
+  waMessageFloating: "Hi Feri! I saw your portfolio and I'm interested in your web development services. Can we chat?",
   available: true,
   resumeUrl: "/resume.pdf",
   socials: {
