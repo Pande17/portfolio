@@ -79,17 +79,10 @@ jobs:
             - name: Deploy to Hostinger via SFTP
               uses: wlixcc/SFTP-Deploy-Action@v1.2.6
               with:
-                  server: ${{ secrets.HOSTINGER_SFTP_SERVER }}
-                  username: ${{ secrets.HOSTINGER_SFTP_USERNAME }}
-                  password: ${{ secrets.HOSTINGER_SFTP_PASSWORD }}
-                  port: 22
-                  local_path: ./dist/
-                  remote_path: ./public_html/feridw/
-                  delete_remote_files: true
-                  exclude: |
-                      .git/
-                      .github/
-                      node_modules/
-                      src/
-                      **/.vscode/
-                      *.md
+                server: ${{ secrets.HOSTINGER_SFTP_SERVER }}
+                username: ${{ secrets.HOSTINGER_SFTP_USERNAME }}
+                password: ${{ secrets.HOSTINGER_SFTP_PASSWORD }}
+                port: 22
+                local_path: ./dist/
+                remote_path: ./public_html/feridw/
+                delete_remote_files: true
