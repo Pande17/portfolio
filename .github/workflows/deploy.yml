@@ -77,7 +77,7 @@ jobs:
                   EOF
 
             - name: Deploy to Hostinger via SFTP
-              uses: SamKirkland/SFTP-Deploy-Action@v1.1.0
+              uses: wlixcc/SFTP-Deploy-Action@v3
               with:
                   server: ${{ secrets.HOSTINGER_SFTP_SERVER }}
                   username: ${{ secrets.HOSTINGER_SFTP_USERNAME }}
