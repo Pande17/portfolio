@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://feridw.dev/sitemap.xml
+Sitemap: https://feridw.bali-teknik.com/sitemap.xml

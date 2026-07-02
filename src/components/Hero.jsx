@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react';
-import heroImg from '@/assets/hero-portrait-new.jpg';
+import heroImg from '@/assets/hero-portrait.jpg';
 import { skillGroups } from '@/data/skills';
 
 const allSkills = skillGroups.flatMap(g => g.skills);
