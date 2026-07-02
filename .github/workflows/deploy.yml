@@ -1,100 +1,95 @@
 name: Deploy FeriDW Portfolio to Hostinger
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+    build-and-deploy:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Build project
-        run: npm run build
+            - name: Build project
+              run: npm run build
 
-      - name: Detect build output folder
-        id: output
-        shell: bash
-        run: |
-          if [ -f "dist/client/index.html" ]; then
-            echo "dir=dist/client/" >> "$GITHUB_OUTPUT"
-            echo "Using dist/client/"
-          elif [ -f ".output/public/index.html" ]; then
-            echo "dir=.output/public/" >> "$GITHUB_OUTPUT"
-            echo "Using .output/public/"
-          elif [ -f "dist/index.html" ]; then
-            echo "dir=dist/" >> "$GITHUB_OUTPUT"
-            echo "Using dist/"
-          else
-            echo "No valid production index.html found."
-            find . -name index.html
-            exit 1
-          fi
+            - name: Detect build output folder
+              id: output
+              shell: bash
+              run: |
+                  if [ -f "dist/client/index.html" ]; then
+                    echo "dir=dist/client/" >> "$GITHUB_OUTPUT"
+                    echo "Using dist/client/"
+                  elif [ -f ".output/public/index.html" ]; then
+                    echo "dir=.output/public/" >> "$GITHUB_OUTPUT"
+                    echo "Using .output/public/"
+                  elif [ -f "dist/index.html" ]; then
+                    echo "dir=dist/" >> "$GITHUB_OUTPUT"
+                    echo "Using dist/"
+                  else
+                    echo "No valid production index.html found."
+                    find . -name index.html
+                    exit 1
+                  fi
 
-      - name: Validate production index.html
-        shell: bash
-        run: |
-          OUTPUT_DIR="${{ steps.output.outputs.dir }}"
-          head -n 50 "${OUTPUT_DIR}index.html"
+            - name: Validate production index.html
+              shell: bash
+              run: |
+                  OUTPUT_DIR="${{ steps.output.outputs.dir }}"
+                  head -n 50 "${OUTPUT_DIR}index.html"
 
-          if grep -q "../src/" "${OUTPUT_DIR}index.html"; then
-            echo "Invalid build: index.html still references ../src/"
-            exit 1
-          fi
+                  if grep -q "../src/" "${OUTPUT_DIR}index.html"; then
+                    echo "Invalid build: index.html still references ../src/"
+                    exit 1
+                  fi
 
-          if grep -q ".tsx" "${OUTPUT_DIR}index.html"; then
-            echo "Invalid build: index.html still references TSX source file"
-            exit 1
-          fi
+                  if grep -q ".tsx" "${OUTPUT_DIR}index.html"; then
+                    echo "Invalid build: index.html still references TSX source file"
+                    exit 1
+                  fi
 
-      - name: Add Hostinger htaccess
-        shell: bash
-        run: |
-          OUTPUT_DIR="${{ steps.output.outputs.dir }}"
+            - name: Add Hostinger htaccess for SPA routing
+              shell: bash
+              run: |
+                  OUTPUT_DIR="${{ steps.output.outputs.dir }}"
 
-          cat > "${OUTPUT_DIR}.htaccess" <<'EOF'
-          <IfModule mod_rewrite.c>
-            RewriteEngine On
-            RewriteBase /feridw/
-            RewriteRule ^index\.html$ - [L]
-            RewriteCond %{REQUEST_FILENAME} !-f
-            RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteRule . /feridw/index.html [L]
-          </IfModule>
-          EOF
+                  cat > "${OUTPUT_DIR}.htaccess" <<'EOF'
+                  <IfModule mod_rewrite.c>
+                    RewriteEngine On
+                    RewriteBase /
+                    RewriteRule ^index\.html$ - [L]
+                    RewriteCond %{REQUEST_FILENAME} !-f
+                    RewriteCond %{REQUEST_FILENAME} !-d
+                    RewriteRule . /index.html [L]
+                  </IfModule>
+                  EOF
 
-      - name: Deploy to Hostinger via SFTP
-        uses: drtd-bb/sftp-deploy@v1.0.2
-        env:
-          SFTP_SERVER: ${{ secrets.HOSTINGER_SFTP_SERVER }}
-          SFTP_USER: ${{ secrets.HOSTINGER_SFTP_USERNAME }}
-          SFTP_PASSWORD: ${{ secrets.HOSTINGER_SFTP_PASSWORD }}
-        with:
-          ssh_host: ${{ secrets.HOSTINGER_SFTP_SERVER }}
-          ssh_user: ${{ secrets.HOSTINGER_SFTP_USERNAME }}
-          ssh_password: ${{ secrets.HOSTINGER_SFTP_PASSWORD }}
-          ssh_port: 22
-          local_path: ./dist/
-          remote_path: ./
-          exclude: |
-            **/.git/**
-            **/.github/**
-            **/node_modules/**
-            **/src/**
-            **/.vscode/**
-            *.md
-          concurrency: 4
-          delete_remote_files: true
+            - name: Deploy to Hostinger via SFTP
+              uses: SamKirkland/SFTP-Deploy-Action@v1.1.0
+              with:
+                  server: ${{ secrets.HOSTINGER_SFTP_SERVER }}
+                  username: ${{ secrets.HOSTINGER_SFTP_USERNAME }}
+                  password: ${{ secrets.HOSTINGER_SFTP_PASSWORD }}
+                  port: 22
+                  local_path: ./dist/
+                  remote_path: ./public_html/feridw/
+                  delete_remote_files: true
+                  exclude: |
+                      .git/
+                      .github/
+                      node_modules/
+                      src/
+                      **/.vscode/
+                      *.md
